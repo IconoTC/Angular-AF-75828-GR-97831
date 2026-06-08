@@ -28,7 +28,6 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 [descanso]: 11:05 - 11:35
 
-<!-- 
 
 - Angular CLI: Comandos básicos.
   - Servidor de desarrollo: `ng serve`.
@@ -41,14 +40,18 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
   - Tipos de datos. Inferencia y anotación de tipos.
   - Tipado de funciones.
   - Tipos personalizados. Interfaces y tipos.
+
+## Día 2 (M-09): Componentes y Rutas
+
+<!-- 
+- Elementos básicos de TypeScript (continuación).
+
   - Clases ES6 en TypeScript.
     - Modificadores de acceso.
     - Getters y Setters.
     - Herencia.
     - Clases abstractas.
 -->
-
-## Día 2 (M-09): Componentes y Rutas
 
 <!-- - Componentes: estado. Zone v. Zoneless
 - Estado en los componentes con ZoneJS.
