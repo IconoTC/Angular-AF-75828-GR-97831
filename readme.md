@@ -15,9 +15,28 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 ## Día 1 (L-08): Introducción a Typescript y Angular
 
+- Introducción a Angular y su ecosistema.
+
+- Entornos de desarrollo para Angular: 
+  - Node: nvm (Node Version Manager)
+  - Visual Studio Code
+- Instalación de Angular CLI.
+- Creación de un nuevo workspace Angular sin proyecto. `ng new`
+- Creación de un nuevo proyecto (app) Angular. `ng generate app`
+- Estructura de un workspace/proyecto Angular.
+- Añadiendo ESLint y Prettier.
+
+[descanso]: 11:05 - 11:35
+
 <!-- 
 
-- Introducción a Angular y su ecosistema.
+- Angular CLI: Comandos básicos.
+  - Servidor de desarrollo: `ng serve`.
+  - Testing con Karma y Jasmine: `ng test`.
+  - Construcción del proyecto: `ng build`.
+- Generación de componentes: `ng generate`.
+  - Elementos de un componente: HTML, CSS, TypeScript. 
+
 - Elementos básicos de TypeScript.
   - Tipos de datos. Inferencia y anotación de tipos.
   - Tipado de funciones.
@@ -27,17 +46,7 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
     - Getters y Setters.
     - Herencia.
     - Clases abstractas.
-- Instalación de Angular CLI.
-- Creación de un nuevo workspace Angular sin proyecto. `ng new`
-- Creación de un nuevo proyecto (app) Angular. `ng generate app`
-- Estructura de un workspace/proyecto Angular.
-- Añadiendo ESLint y Prettier.
-- Angular CLI: Comandos básicos.
-  - Servidor de desarrollo: `ng serve`.
-  - Testing con Karma y Jasmine: `ng test`.
-  - Construcción del proyecto: `ng build`.
-- Generación de componentes: `ng generate`.
-  - Elementos de un componente: HTML, CSS, TypeScript. -->
+-->
 
 ## Día 2 (M-09): Componentes y Rutas
 
