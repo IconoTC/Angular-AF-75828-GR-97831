@@ -19,22 +19,30 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 - Entornos de desarrollo para Angular: 
   - Node: nvm (Node Version Manager)
+    - Problemas de instalación
   - Visual Studio Code
+    - Extensiones recomendadas
 - Instalación de Angular CLI.
-- Creación de un nuevo workspace Angular sin proyecto. `ng new`
-- Creación de un nuevo proyecto (app) Angular. `ng generate app`
-- Estructura de un workspace/proyecto Angular.
-- Añadiendo ESLint y Prettier.
+- Workspace y proyectos en Angular.
+  - Creación de un nuevo workspace Angular sin proyecto. `ng new`
+  - Creación de un nuevo proyecto (app) Angular. `ng generate app`
+  - Estructura de un workspace/proyecto Angular.
+  - Añadiendo ESLint (`ng add`) y Prettier.
 
 [descanso]: 11:05 - 11:35
 
 
 - Angular CLI: Comandos básicos.
   - Servidor de desarrollo: `ng serve`.
-  - Testing con Karma y Jasmine: `ng test`.
+  - Testing con Vitest: `ng test`.
+  - Testing con Playwright: `ng e2e`.
+    - Problemas de versiones. Actualización con Version Lens 
   - Construcción del proyecto: `ng build`.
 - Generación de componentes: `ng generate`.
   - Elementos de un componente: HTML, CSS, TypeScript. 
+  - Template y estilos inline o en ficheros.
+  - Guía de estilos actualizada
+  - Scaffolding
 
 - Elementos básicos de TypeScript.
   - Tipos de datos. Inferencia y anotación de tipos.
@@ -43,7 +51,7 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 ## Día 2 (M-09): Componentes y Rutas
 
-<!-- 
+
 - Elementos básicos de TypeScript (continuación).
 
   - Clases ES6 en TypeScript.
@@ -51,16 +59,67 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
     - Getters y Setters.
     - Herencia.
     - Clases abstractas.
+  - Módulos ES6 en TypeScript.
+    - Import y Export.
+    - Módulos por defecto y nombrados.
+
+ <!--
+ 
+ - Generación de componentes: `ng generate component <nombre>`.
+    - Programación declarativa en el template: {{}}, [], ()
+    - Signals en el estado del componente y en la plantilla.
+  
+- Testing de componentes. Pruebas unitarias
+
+  - Test con Vitest. Conceptos básicos y ejemplo
+  - Elementos de los test en Angular: TestBed, fixture, detectChanges()
+  - Test de implementación v. test de comportamiento.
+  - Tests para componentes básicos.
+
+- Scaffolding. Core
+
+  - Componentes Header y Footer.
+  - Componente Menu. Proyección de contenido
+  - Componentes Card y Layout. Aspecto visual básico.
+  - App como contenedor principal.
+
+- Testing de todos los componentes
+  - Test de Header, Footer, Menu, Card y Layout. 
+
 -->
 
-<!-- - Componentes: estado. Zone v. Zoneless
+- [Descanso]: ....
+
+<!-- 
+
+- Scaffolding. Features
+
+  - Componentes (pages): Home, About.
+
+- Componentes.
+  - Componente Counter. Eventos. (click)
+  - Componente Greeting. Input de usuario: data binding. [(ngModel)]
+  - Componente Counter2. Condicionales @If. [class]
+  - Modificamos Menu. @for
+- Referencias locales. #ref
+  - Componente GreetingRef. Referencias locales en el template. 
+ 
+ -->
+
+<!-- 
+
+- Componentes: estado. Zone v. Zoneless
 - Estado en los componentes con ZoneJS.
   - Componente Counter. Estado y eventos.
   - Detección del cambio: Zone v. Zoneless
   - Signals y estado
   - Zoneless y asincronía: uso de Signals
-- Scaffolding. Core y Features
-  - Componentes (pages): Home, Tasks, About.
+
+-->
+
+## Día 3 (X-10). Comunicaciones y Arquitectura de componentes. Formularios TD
+
+
 - Rutas básicas. `app.routes.ts`
   - Array de rutas.
   - Array de opciones de menu
@@ -68,71 +127,18 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
   - Navegación. Componente menu. @for
   - SPA: RouterLink y RouterLinkActive
 - Rutas Lazy. Default import en las páginas
-- Componentes.
-  - Componente Counter. Condicionales @If. [class]
-  - Componente Greeting. Input de usuario: data binding. [(ngModel)]
-  - Componente Layout. Proyección de contenido
-    - Componente Header.
-    - Componente Footer.
-- Pipes. Location "es"
-- Testing de componentes
-  - Configuración de Karma y Jasmine.
-  - Coverage istambul
-  - Creación de pruebas unitarias para componentes. -->
 
-## Día 3 (X-10). Comunicaciones y Arquitectura de componentes. Formularios TD
-
-<!-- - Testing de componentes (continuación)
-  - Pruebas unitarias para componentes con eventos y data binding.
-- Debugging
 - Comunicación entre componentes
+
   - Input. Decoradores @Input. función input(). Drilling del título
   - Output. Decorador @Output. EventEmitter. Función output(). Eventos del contador
-  - Agrupando contadores.
-  - Contadores. Eventos con valor
-  - Testing de componentes con comunicación.
-- Arquitectura de componentes
-  - Componentes de presentación vs contenedores.
-  - Componentes inteligentes vs tontos.
-- Ejemplo: ToDo List
-  - Entidad ToDo. Modelo y mock de datos.
-  - Componente Tasks. Lógica del estado
-  - Componente TodoItem. Input y Output (Eventos)
-  - Componente TodoCreate. Output (Eventos). Forms Template Driven (TD) -->
+  - Agrupando contadores. Estado en el componente padre
+  - Contadores. Eventos con valor. Computed signals
+
 
 ## Día 4 (J-11). Servicios. Providers e injectors. Formularios DD
 
-<!-- - Forms TD (review)
-- Introducción a los servicios en Angular.
-- Servicios y Providers. DI (Dependency Injection)
-  - Provider root v. provider en un componente
-- Servicios y patrón Repository
-  - Servicio InMemoryTaskRepository. Mock de datos.
-  - Uso de promesas y observables (RxJs)
-  - Testing de servicios.
-  - Uso en los componentes. Inyección de dependencias.
-  - Repositorio y lógica de negocio (estado). 
-- Formularios reactivos (DD)
-  - FormGroup, FormControl, FormBuilder
-  - Validaciones síncronas y asíncronas.
-  - Testing de formularios reactivos. -->
+
 
 ## Día 5 (V-12). Servicios HTTP
 
-<!-- - Repositorio y lógica de negocio (estado). Estrategias
-  - Estrategia no optimista 1 repositorio / 2 estado   -->
-
-<!-- - Formularios reactivos (review). Mensajes de validación
-- Introducción a los servicios HTTP en Angular.ç
-- Servicio fake basado en JSONServer.
-  - Prueba con Postman
-- Servicio HttpClientModule. Observables (RxJs).
-  - Creación de un ApiRepositoryService.
-  - Configuración del servicio HTTP: provider
-  - Uso desde la feature Tasks.
-- Servicios stateful: patrón Flux
-  - Estado con RxJS: Subjects
-  - Clonado de ToDo como ToDo-Flux
-  - Uso del estado desde los componentes ToDo...
-  - Uso desde cualquier parte de la aplicación.
-  - Signals y estado -->
