@@ -63,10 +63,9 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
     - Import y Export.
     - Módulos por defecto y nombrados.
 
- <!--
- 
  - Generación de componentes: `ng generate component <nombre>`.
     - Programación declarativa en el template: {{}}, [], ()
+    - Estilos: Encapsulación de estilos. ViewEncapsulation.
     - Signals en el estado del componente y en la plantilla.
   
 - Testing de componentes. Pruebas unitarias
@@ -75,52 +74,52 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
   - Elementos de los test en Angular: TestBed, fixture, detectChanges()
   - Test de implementación v. test de comportamiento.
   - Tests para componentes básicos.
+    - Renderizado del componente (e.g. heading).
+    - Interacción con el componente (e.g. click en un botón).
 
+- [Descanso]: 11:10 - 11:40
+ 
 - Scaffolding. Core
-
   - Componentes Header y Footer.
   - Componente Menu. Proyección de contenido
   - Componentes Card y Layout. Aspecto visual básico.
   - App como contenedor principal.
 
-- Testing de todos los componentes
-  - Test de Header, Footer, Menu, Card y Layout. 
-
--->
-
-- [Descanso]: ....
-
-<!-- 
 
 - Scaffolding. Features
-
   - Componentes (pages): Home, About.
 
 - Componentes.
   - Componente Counter. Eventos. (click)
-  - Componente Greeting. Input de usuario: data binding. [(ngModel)]
-  - Componente Counter2. Condicionales @If. [class]
-  - Modificamos Menu. @for
+    - Condicionales @If. [class]
+  - Componente Search. Input de usuario: data binding. [(ngModel)]
 - Referencias locales. #ref
-  - Componente GreetingRef. Referencias locales en el template. 
- 
- -->
+  - Componente SearchRef. Referencias locales en el template. 
+
+<!--
+- Testing de todos los componentes
+  - Test de Header, Footer, Menu, Card y Layout.  
+  - Test de las páginas
+  - Test de Counter. Renderizado y eventos.
+  - Test de Search. Renderizado y data binding.
+-->
 
 <!-- 
-
 - Componentes: estado. Zone v. Zoneless
 - Estado en los componentes con ZoneJS.
   - Componente Counter. Estado y eventos.
   - Detección del cambio: Zone v. Zoneless
   - Signals y estado
   - Zoneless y asincronía: uso de Signals
-
 -->
 
 ## Día 3 (X-10). Comunicaciones y Arquitectura de componentes. Formularios TD
 
+<!-- 
+  - Modificamos Menu. @for
+ -->
 
-- Rutas básicas. `app.routes.ts`
+<!-- - Rutas básicas. `app.routes.ts`
   - Array de rutas.
   - Array de opciones de menu
   - RouterOutlet en AppComponent.
@@ -133,7 +132,7 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
   - Input. Decoradores @Input. función input(). Drilling del título
   - Output. Decorador @Output. EventEmitter. Función output(). Eventos del contador
   - Agrupando contadores. Estado en el componente padre
-  - Contadores. Eventos con valor. Computed signals
+  - Contadores. Eventos con valor. Computed signals -->
 
 
 ## Día 4 (J-11). Servicios. Providers e injectors. Formularios DD
