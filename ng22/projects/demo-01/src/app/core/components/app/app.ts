@@ -1,18 +1,53 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Sample } from '../sample/sample';
+import { Header } from '../header/header';
+import { Footer } from '../footer/footer';
+import { Main } from '../main/main';
+import { Menu } from '../menu/menu';
+import { Card } from '../card/card';
+import DashboardPage from '../../../features/dashboard/dashboard-page';
+import ProductsPage from '../../../features/products/products-page';
 
 @Component({
   selector: 'ind-root',
-  imports: [RouterOutlet, Sample],
+  imports: [
+    RouterOutlet,
+    Sample,
+    Header,
+    Footer,
+    Main,
+    Menu,
+    Card,
+    DashboardPage,
+    ProductsPage,
+  ],
   template: `
-    <h1>Hello, {{ title() }}</h1>
-    <h2>Sample Component</h2>
-    <ind-sample />
-    <router-outlet />
+    <ind-header>
+      <ind-menu id="menu" />
+    </ind-header>
+    <ind-main>
+      <ind-card>
+        <p>App works!</p>
+      </ind-card>
+      <ind-card>
+        <ind-sample />
+      </ind-card>
+      <router-outlet />
+      <ind-dashboard-page />
+      <ind-products-page />
+    </ind-main>
+    <ind-footer />
   `,
-  styles: [],
+  styles: `
+    :host {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  `,
 })
 export class App {
-  protected readonly title = signal('Demo-01');
+  // protected readonly title = signal('Demo-01');
 }

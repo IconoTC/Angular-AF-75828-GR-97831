@@ -5,12 +5,12 @@ import { Component, signal, ViewEncapsulation } from '@angular/core';
   imports: [],
   encapsulation: ViewEncapsulation.Emulated,
   template: `
-    <h2>{{ title().toUpperCase() }}</h2>
-    <p [title]="title()">sample works!</p>
-    <img [src]="img()" alt="Angular Logo" width="100" />
-    <div>
-      <button (click)="showAlert()">Haz click</button>
-    </div>
+      <h2>{{ title().toUpperCase() }}</h2>
+      <p [title]="title()">sample works!</p>
+      <img [src]="img()" alt="Angular Logo" width="100" />
+      <div>
+        <button (click)="showAlert()">Haz click</button>
+      </div>
   `,
   styles: `
     :host {

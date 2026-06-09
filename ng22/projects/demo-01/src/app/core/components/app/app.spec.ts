@@ -18,12 +18,7 @@ describe('App', () => {
   // test de implementación
   it('should create the app', () => {
     expect(component).toBeTruthy();
-    expect(component['title']()).toBe('Demo-01');
+    // expect(component['title']()).toBe('Demo-01');
   });
 
-  // Test de funcionalidad
-  it('should render title', async () => {
-    const appElement = fixture.nativeElement as HTMLElement;
-    expect(appElement.querySelector('h1')?.textContent).toContain('Demo-01');
-  });
 });
