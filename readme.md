@@ -51,7 +51,6 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 ## Día 2 (M-09): Componentes y Rutas
 
-
 - Elementos básicos de TypeScript (continuación).
 
   - Clases ES6 en TypeScript.
@@ -82,7 +81,7 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 - Scaffolding. Core
   - Componentes Header y Footer.
   - Componente Menu. Proyección de contenido
-  - Componentes Card y Layout. Aspecto visual básico.
+  - Componentes Card. Aspecto visual básico.
   - App como contenedor principal.
 
 
@@ -115,11 +114,13 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 ## Día 3 (X-10). Comunicaciones y Arquitectura de componentes. Formularios TD
 
-<!-- 
-  - Modificamos Menu. @for
- -->
+- Review doble data binding & #ref
+  - Signal queries: viewChild
+  - Ciclo de vida de los componentes
+  - Effects (primitiva de signal)
+- Modificamos Menu. @for
 
-<!-- - Rutas básicas. `app.routes.ts`
+- Rutas básicas. `app.routes.ts`
   - Array de rutas.
   - Array de opciones de menu
   - RouterOutlet en AppComponent.
@@ -127,17 +128,107 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
   - SPA: RouterLink y RouterLinkActive
 - Rutas Lazy. Default import en las páginas
 
+[Descanso]: 10:55 - 11:25
+
+<!-- 
+
 - Comunicación entre componentes
 
   - Input. Decoradores @Input. función input(). Drilling del título
   - Output. Decorador @Output. EventEmitter. Función output(). Eventos del contador
   - Agrupando contadores. Estado en el componente padre
-  - Contadores. Eventos con valor. Computed signals -->
+  - Contadores. Eventos con valor. Computed signals 
+  
+  - Pipes. Location "es"
 
+- Arquitectura de componentes
+  - Componentes de contenedores vs de presentación.
+  - Componentes inteligentes vs tontos.
+- Ejemplo: Tasks List
+  - Entidad Tasks. Modelo y mock de datos asíncrono.
+  - Componente Tasks-List. Lógica del estado
+  - Componente Tasks-Item. Input y Output (Eventos)
+  - Componente Tasks-Form. Output (Eventos)
+    - Forms Template Driven (TD)
+    - NgForm implícito, NgModel. Referencias locales
+    - viewChild(NgForm) y form.reset()
+    - viewChild(Form), ElementRef.nativeElement y acceso al DOM
+ 
+-->
 
 ## Día 4 (J-11). Servicios. Providers e injectors. Formularios DD
 
+<!-- - Introducción a los servicios en Angular.
+- Servicios y Providers. DI (Dependency Injection)
 
+  - Provider root v. provider en un componente / ruta
+  - Ejemplo con un servicio simple: Time
+  - Injector jerárquico. Servicios singleton y no singleton.
+  - Inyección de una constante: TITLE_APP
+
+- Servicios y patrón Repository
+
+  - Mock de datos. Interface de los repositorios
+  - Uso de promesas y observables (RxJS) en los servicios.
+  - Servicio InMemoryTaskRepository.
+  - Uso en los componentes. Inyección de dependencias.
+  - Repositorio y lógica de negocio (estado). Estrategias -->
+
+- [Descanso] - 11:50 - 12:15
+
+<!-- - Servicios y patrón Repository (continuación)
+
+  - Métodos CRUD. getAll() y getById()
+  - Métodos CRUD. add(), update(), delete()
+  - Repositorio y persistencia local (localStorage).
+  - Servicio LocalTaskRepository.
+  - Los mismos repositorios usando RxJS (Observables). -->
+
+  <!-- - Testing de servicios.
+    - Tests del servicio
+      - Test de métodos CRUD.
+      - Test de promesas (async, whenStable, expectAsync).
+    - Testing de componentes con servicios (mocks y spies). -->
+
+<!-- - Formularios reactivos (DD). LoginForm
+  - Usan RxJS (Observables)
+  - FormGroup, FormControl, FormBuilder
+  - Binding desde el template 
+  - Validaciones síncronas (y asíncronas).
+    - Mensajes de validación -->
 
 ## Día 5 (V-12). Servicios HTTP
 
+<!-- - Formularios reactivos (review).
+
+  - RegisterForm. Otros controles HTML
+  - Testing de formularios reactivos.
+
+- Introducción a los servicios HTTP en Angular.
+- Servicio fake basado en JSONServer.
+  - Prueba con Postman
+- Servicio HttpClientModule. Observables (RxJs).
+
+  - Creación de un ApiRepositoryService.
+  - Antes de Angular 21: Configuración del servicio HTTP: provider
+  - Uso desde la feature Tasks. -->
+
+- [Descanso] 11:45 - 12:10
+
+<!--
+- Servicio HttpClientModule. Observables (RxJs).
+  - Tests de servicios HTTP con HttpTestingController
+  - Test de componentes con servicios HTTP (mocks y spies).
+-->
+
+<!-- Servicios stateful: patrón Flux
+
+- Estado con RxJS: Subjects
+- Nuevo proyecto. Feature Todo
+- Servicio Store con TodoState
+  - Estado privado con BehaviorSubject
+  - Estado público con Observable (asObservable)
+  - Métodos para modificar el estado (add, toggle, remove)
+- Uso del estado desde los componentes ToDo...
+- Gestión de errores
+- Uso desde cualquier parte de la aplicación (Header) -->
