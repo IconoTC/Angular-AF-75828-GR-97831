@@ -130,7 +130,6 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 [Descanso]: 10:55 - 11:25
 
-<!-- 
 
 - Comunicación entre componentes
 
@@ -141,22 +140,26 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
   
   - Pipes. Location "es"
 
+
 - Arquitectura de componentes
   - Componentes de contenedores vs de presentación.
   - Componentes inteligentes vs tontos.
+
 - Ejemplo: Tasks List
   - Entidad Tasks. Modelo y mock de datos asíncrono.
   - Componente Tasks-List. Lógica del estado
   - Componente Tasks-Item. Input y Output (Eventos)
+  - Componente Tasks-Form. Output (Eventos) - Mock sin formulario
+
+## Día 4 (J-11). Servicios. Providers e injectors. Formularios DD
+
+<!-- 
   - Componente Tasks-Form. Output (Eventos)
     - Forms Template Driven (TD)
     - NgForm implícito, NgModel. Referencias locales
     - viewChild(NgForm) y form.reset()
     - viewChild(Form), ElementRef.nativeElement y acceso al DOM
- 
--->
-
-## Día 4 (J-11). Servicios. Providers e injectors. Formularios DD
+ -->
 
 <!-- - Introducción a los servicios en Angular.
 - Servicios y Providers. DI (Dependency Injection)
