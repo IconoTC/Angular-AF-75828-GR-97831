@@ -25,6 +25,14 @@ export const routes: Routes = [
     loadComponent: () => import('./features/dashboard/dashboard-page').then((m) => m.default),
   },
   {
+    path: 'tasks',
+    title: 'Tasks | Demo 01',
+    data: {
+      label: 'Tareas',
+    },
+    loadComponent: () => import('./features/tasks/tasks-page').then((m) => m.default),
+  },
+  {
     path: 'products',
     title: 'Products | Demo 01',
     data: {
