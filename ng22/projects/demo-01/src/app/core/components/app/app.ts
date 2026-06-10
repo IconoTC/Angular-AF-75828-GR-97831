@@ -26,16 +26,16 @@ import ProductsPage from '../../../features/products/products-page';
     <ind-header>
       <ind-menu id="menu" />
     </ind-header>
-    <ind-main>
-      <ind-card>
+    <ind-main >
+      <ind-card id="home">
         <p>App works!</p>
       </ind-card>
       <ind-card>
         <ind-sample />
       </ind-card>
       <router-outlet />
-      <ind-dashboard-page />
-      <ind-products-page />
+      <ind-dashboard-page id="dashboard" />
+      <ind-products-page id="products" />
     </ind-main>
     <ind-footer />
   `,

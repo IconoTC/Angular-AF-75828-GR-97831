@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, viewChild, ElementRef, effect } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,4 +14,25 @@ import { FormsModule } from '@angular/forms';
   `,
   styles: ``,
 })
-export class SearchRef {}
+export class SearchRef {
+
+  protected readonly searchInputElement = viewChild<ElementRef>('searchInput');
+
+  constructor() {
+    console.log('Constructor');
+    console.log(this.searchInputElement());
+
+    effect(() => {
+      console.log('Effect');
+      console.log(this.searchInputElement());
+      console.dir(this.searchInputElement()?.nativeElement);
+    })
+
+  }
+
+  // ngOnInit() {
+  //   console.log('OnInit');
+  //   console.log(this.searchInputElement());
+  //   console.dir(this.searchInputElement()?.nativeElement);
+  // }
+}
