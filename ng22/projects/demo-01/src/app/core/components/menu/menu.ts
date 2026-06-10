@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MenuOption } from '../../types/menu-option';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { getRoutes } from '../../../app.routes';
 
 @Component({
   selector: 'ind-menu',
@@ -9,7 +8,7 @@ import { getRoutes } from '../../../app.routes';
   template: `
     <nav>
       <menu>
-        @for (item of options; track item.label) {
+        @for (item of options(); track item.label) {
           <li>
             <a [routerLink]="item.path"
             [routerLinkActive]="'active'"
@@ -40,5 +39,5 @@ import { getRoutes } from '../../../app.routes';
   `,
 })
 export class Menu {
-  protected readonly options: MenuOption[] = getRoutes();
+readonly options = input.required<MenuOption[]>();
 }

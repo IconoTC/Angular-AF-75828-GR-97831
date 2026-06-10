@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'ind-header',
@@ -32,6 +32,9 @@ import { Component, signal } from '@angular/core';
   `,
 })
 export class Header {
-  protected readonly title = signal('Angular 22');
-  protected readonly subtitle = signal('Aprende a desarrollar aplicaciones con Angular');
+  readonly title = input.required<string>({
+    // eslint-disable-next-line @angular-eslint/no-input-rename
+    alias: 'mainTitle',
+  });
+  readonly subtitle = input.required<string>();
 }

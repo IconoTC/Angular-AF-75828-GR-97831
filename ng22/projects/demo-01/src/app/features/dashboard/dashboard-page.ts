@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Counter } from './components/counter/counter';
+import { CountersList } from './components/counters-list/counters-list';
 
 @Component({
   selector: 'ind-dashboard-page',
-  imports: [Counter],
+  imports: [CountersList],
   template: `
     <h2>Dashboard</h2>
-    <ind-counter />
+    <ind-counters-list />
   `,
   styles: ``,
 })

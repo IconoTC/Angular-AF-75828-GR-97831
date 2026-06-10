@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'ind-counter',
   imports: [],
   template: `
+    <h3>Counter {{id()}}</h3>
     <p>
       Clicks: <output class="clicks">{{ clicks() }}</output>
     </p>
@@ -39,6 +40,11 @@ import { Component, signal } from '@angular/core';
   `,
 })
 export class Counter {
+
+  readonly id = input.required<number>();
+
+  protected readonly clickEvent = output<number>();
+
   protected readonly limit = signal(5);
   protected readonly clicks = signal(0);
   protected readonly count = signal(0);
@@ -51,6 +57,7 @@ export class Counter {
 
   changeCount(delta: number) {
     this.clicks.update((value) => value + 1);
+    this.clickEvent.emit(delta);
     if (delta > 0 && this.count() >= this.limit()) {
       return;
     }
@@ -68,6 +75,7 @@ export class Counter {
     setTimeout(() => {
       this.clicks.update((value) => value + 1);
       this.count.update((value) => value + 1);
+      this.clickEvent.emit(1);
       console.log(`Clicks: ${this.clicks}`);
     }, 1000);
   }

@@ -7,7 +7,7 @@ import { Card } from '../../core/components/card/card';
   imports: [Sample, Card],
   template: `
     <h2>Home</h2>
-    <ind-card id="home">
+    <ind-card id="home" cardTitle="Sample">
       <p>App works!</p>
     </ind-card>
     <ind-card>
