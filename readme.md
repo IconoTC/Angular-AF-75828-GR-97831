@@ -133,13 +133,12 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 - Comunicación entre componentes
 
-  - Input. Decoradores @Input. función input(). Drilling del título
+  - Input. Decoradores @Input. función input(). Drilling
   - Output. Decorador @Output. EventEmitter. Función output(). Eventos del contador
   - Agrupando contadores. Estado en el componente padre
   - Contadores. Eventos con valor. Computed signals 
   
-  - Pipes. Location "es"
-
+- Pipes. Location "es"
 
 - Arquitectura de componentes
   - Componentes de contenedores vs de presentación.
@@ -153,13 +152,13 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 ## Día 4 (J-11). Servicios. Providers e injectors. Formularios DD
 
-<!-- 
+
   - Componente Tasks-Form. Output (Eventos)
     - Forms Template Driven (TD)
-    - NgForm implícito, NgModel. Referencias locales
-    - viewChild(NgForm) y form.reset()
-    - viewChild(Form), ElementRef.nativeElement y acceso al DOM
- -->
+      - NgForm implícito, NgModel. Referencias locales
+      - viewChild(NgForm) y form.reset()
+      - viewChild(Form), ElementRef.nativeElement y acceso al DOM
+    - Signal Forms
 
 <!-- - Introducción a los servicios en Angular.
 - Servicios y Providers. DI (Dependency Injection)
