@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, ElementRef, signal, viewChild } from '@angular/core';
 import { Task, TaskDTO } from '../../types/task';
 import TASKS from '../../data/tasks-data.json';
 import { JsonPipe } from '@angular/common';
@@ -9,9 +9,9 @@ import { TaskItem } from '../task-item/task-item';
   selector: 'ind-task-list',
   imports: [JsonPipe, TaskForm, TaskItem],
   template: `
-    <details>
+    <details #details>
       <summary>Add Task</summary>
-      <ind-task-form (addEvent)="addTask($event)"/>
+      <ind-task-form (addEvent)="addTask($event)" />
     </details>
 
     @if (tasks().length === 0) {
@@ -47,6 +47,7 @@ import { TaskItem } from '../task-item/task-item';
 })
 export class TaskList {
   protected readonly tasks = signal<Task[]>([]);
+  protected readonly details = viewChild<ElementRef<HTMLDetailsElement>>('details');
 
   constructor() {
     this.loadTasks();
@@ -54,7 +55,7 @@ export class TaskList {
 
   private generateId(): string {
     while (true) {
-      const id = crypto.randomUUID().substring(1, 4);
+      const id = crypto.randomUUID().substring(1, 6);
       // Verificar que el ID no exista ya
       if (!this.tasks().some((task) => task.id === id)) {
         return id;
@@ -78,6 +79,7 @@ export class TaskList {
     };
 
     this.tasks.update((tasks) => [...tasks, newTask]);
+    (this.details() as ElementRef<HTMLDetailsElement>).nativeElement.open = false; // Cerrar el detalle después de agregar la tarea
   }
 
   protected deleteTask(taskId: Task['id']) {
