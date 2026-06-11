@@ -7,11 +7,13 @@ import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeEs);
 
 import { routes } from './app.routes';
+import { TimeOld } from './core/services/time';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     {provide: LOCALE_ID, useValue: 'es-ES'},
+    TimeOld,
   ],
 };

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MenuOption } from './core/types/menu-option';
+import { TimeOld } from './core/services/time';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -39,6 +40,7 @@ export const routes: Routes = [
       label: 'Productos',
     },
     loadComponent: () => import('./features/products/products-page').then((m) => m.default),
+    providers: [TimeOld],
   },
   {
     path: 'about',

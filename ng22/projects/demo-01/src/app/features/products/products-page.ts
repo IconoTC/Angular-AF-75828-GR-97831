@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Search } from './components/search/search';
 import { SearchRef } from './components/search/search-ref';
 import { Card } from '../../core/components/card/card';
+import { TimeOld } from '../../core/services/time';
 
 @Component({
   selector: 'ind-products-page',
@@ -17,4 +18,10 @@ import { Card } from '../../core/components/card/card';
   `,
   styles: ``,
 })
-export default class ProductsPage {}
+export default class ProductsPage {
+  private time = inject(TimeOld);
+
+  constructor() {
+    console.log('ProductsPage constructor', this.time.getTime());
+  }
+}
