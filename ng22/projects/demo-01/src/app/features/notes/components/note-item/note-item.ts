@@ -28,13 +28,17 @@ export class NoteItem {
   note = input.required<Note>();
 
   deleteEvent = output<Note['id']>();
-  changeEvent = output<Note['id']>();
+  changeEvent = output<Note>();
 
   emitDelete() {
     this.deleteEvent.emit(this.note().id);
   }
 
   emitChange() {
-    this.changeEvent.emit(this.note().id);
+    const note = {
+      ...this.note(),
+      isImportant: !this.note().isImportant,
+    };
+    this.changeEvent.emit(note);
   }
 }

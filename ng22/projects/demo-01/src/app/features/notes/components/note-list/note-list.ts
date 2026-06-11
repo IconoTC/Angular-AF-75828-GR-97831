@@ -1,9 +1,10 @@
-import { Component, ElementRef, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { Note, NoteDTO } from '../../types/note';
-import TASKS from '../../data/notes-data.json';
 import { JsonPipe } from '@angular/common';
 import { NoteForm } from '../note-form/note-form';
 import { NoteItem } from '../note-item/note-item';
+import { NotesLocalRepo } from '../../services/notes-local-repo';
+import { Repository } from '../../../../core/types/repository';
 
 @Component({
   selector: 'ind-note-list',
@@ -45,6 +46,8 @@ import { NoteItem } from '../note-item/note-item';
   `,
 })
 export class NoteList {
+  private readonly repo: Repository<Note, NoteDTO> = inject(NotesLocalRepo);
+
   protected readonly notes = signal<Note[]>([]);
   protected readonly details = viewChild<ElementRef<HTMLDetailsElement>>('details');
 
@@ -52,49 +55,49 @@ export class NoteList {
     this.loadNotes();
   }
 
-  private generateId(): string {
-    while (true) {
-      const id = crypto.randomUUID().substring(1, 6);
-      // Verificar que el ID no exista ya
-      if (!this.notes().some((note) => note.id === id)) {
-        return id;
-      }
-    }
-  }
-
   protected loadNotes() {
     // Simulación de carga de tareas desde una API
-    setTimeout(() => {
-      this.notes.set(TASKS);
-    }, 1000);
+    this.repo.getAll().then((notes) => {
+      this.notes.set(notes);
+    }).catch((error) => {
+      console.error('Error loading notes:', error);
+    });
   }
 
   protected addNote(noteData: NoteDTO) {
     console.log('Add new note:', noteData);
 
-    const newNote: Note = {
-      id: this.generateId(), // Genera un ID aleatorio
-      ...noteData,
-    };
+    // Asyncrona -> servicio Repo
 
-    this.notes.update((notes) => [...notes, newNote]);
-    (this.details() as ElementRef<HTMLDetailsElement>).nativeElement.open = false; // Cerrar el detalle después de agregar la tarea
+    this.repo.create(noteData).then((newNote) => {
+      // Sincrona -> State local (Signal)
+
+      this.notes.update((notes) => [...notes, newNote]);
+      // Cerrar el detalle después de agregar la tarea
+      (this.details() as ElementRef<HTMLDetailsElement>).nativeElement.open = false;
+    }).catch((error) => {
+      console.error('Error adding note:', error);
+    });
   }
 
   protected deleteNote(noteId: Note['id']) {
     console.log('Delete note with id:', noteId);
-    this.notes.update((notes) => notes.filter((note) => note.id !== noteId));
+    this.repo.delete(noteId).then(() => {
+      this.notes.update((notes) => notes.filter((note) => note.id !== noteId));
+    }).catch((error) => {
+      console.error('Error deleting note:', error);
+    });
   }
 
-  protected updateNote(noteId: Note['id']) {
-    console.log('Update note with id:', noteId);
-    this.notes.update((notes) => {
-      return notes.map((note) => {
-        if (note.id === noteId) {
-          return { ...note, isImportant: !note.isImportant };
-        }
-        return note;
+  protected updateNote(note: Note) {
+    console.log('Update note with id:', note.id);
+
+    this.repo.update(note.id, note).then((updatedNote) => {
+      this.notes.update((notes) => {
+        return notes.map((n) => (n.id === updatedNote.id ? updatedNote : n));
       });
+    }).catch((error) => {
+      console.error('Error updating note:', error);
     });
   }
 }
