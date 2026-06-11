@@ -9,10 +9,19 @@ import { Time, TimeOld } from '../../core/services/time';
     <h2>Dashboard</h2>
     <ind-counters-list />
   `,
-  styles: ``,
+  styles: `
+    :host {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+    }
+    h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  `,
 })
 export default class DashboardPage {
-
   time = inject(Time);
 
   // eslint-disable-next-line @angular-eslint/prefer-inject
@@ -20,5 +29,4 @@ export default class DashboardPage {
     console.log('DashboardPage constructor', this.timeOld.getTime());
     console.log('DashboardPage constructor', this.time.getTime());
   }
-
 }

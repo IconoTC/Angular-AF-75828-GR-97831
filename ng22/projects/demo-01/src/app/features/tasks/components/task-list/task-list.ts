@@ -39,8 +39,7 @@ import { TaskItem } from '../task-item/task-item';
       list-style: none;
       padding: 0;
       display: grid;
-      /* grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); */
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
       gap: 1rem;
     }
   `,
