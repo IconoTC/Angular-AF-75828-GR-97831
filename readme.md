@@ -152,39 +152,38 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 ## Día 4 (J-11). Servicios. Providers e injectors. Formularios DD
 
+- Componente Tasks-Form. Output (Eventos)
+  - Forms Template Driven (TD)
+    - NgForm implícito, NgModel. Referencias locales
+    - viewChild(NgForm) y form.reset()
+    - viewChild(Form), ElementRef.nativeElement y acceso al DOM
+  - Signal Forms
 
-  - Componente Tasks-Form. Output (Eventos)
-    - Forms Template Driven (TD)
-      - NgForm implícito, NgModel. Referencias locales
-      - viewChild(NgForm) y form.reset()
-      - viewChild(Form), ElementRef.nativeElement y acceso al DOM
-    - Signal Forms
-
-<!-- - Introducción a los servicios en Angular.
+- Introducción a los servicios en Angular.
 - Servicios y Providers. DI (Dependency Injection)
-
   - Provider root v. provider en un componente / ruta
   - Ejemplo con un servicio simple: Time
   - Injector jerárquico. Servicios singleton y no singleton.
   - Inyección de una constante: TITLE_APP
 
-- Servicios y patrón Repository
+- Solución de problemas en CSS con el grid RWD
 
+- [Descanso] - 11:05 - 11:35
+
+- Servicios y patrón Repository
   - Mock de datos. Interface de los repositorios
   - Uso de promesas y observables (RxJS) en los servicios.
-  - Servicio InMemoryTaskRepository.
+  - Servicio LocalNotesRepository: Repositorio y persistencia local (localStorage).
   - Uso en los componentes. Inyección de dependencias.
-  - Repositorio y lógica de negocio (estado). Estrategias -->
-
-- [Descanso] - 11:50 - 12:15
-
-<!-- - Servicios y patrón Repository (continuación)
-
+  - Repositorio y lógica de negocio (estado). Estrategias 
   - Métodos CRUD. getAll() y getById()
   - Métodos CRUD. add(), update(), delete()
-  - Repositorio y persistencia local (localStorage).
-  - Servicio LocalTaskRepository.
-  - Los mismos repositorios usando RxJS (Observables). -->
+
+- RxJS (Observables)
+  - Introducción. Observables, subscription, operadores.
+  - Los mismos repositorios usando RxJS (Observables). 
+  - Uso del repo en el componente
+
 
   <!-- - Testing de servicios.
     - Tests del servicio
@@ -192,28 +191,29 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
       - Test de promesas (async, whenStable, expectAsync).
     - Testing de componentes con servicios (mocks y spies). -->
 
-<!-- - Formularios reactivos (DD). LoginForm
-  - Usan RxJS (Observables)
+- Formularios reactivos (DD). RegisterForm
   - FormGroup, FormControl, FormBuilder
   - Binding desde el template 
-  - Validaciones síncronas (y asíncronas).
-    - Mensajes de validación -->
 
 ## Día 5 (V-12). Servicios HTTP
 
-<!-- - Formularios reactivos (review).
+<!-- - Formularios reactivos (continuación).
 
   - RegisterForm. Otros controles HTML
-  - Testing de formularios reactivos.
+  - Validaciones síncronas (y asíncronas).
+    - Mensajes de validación 
+-->
+  
+<!-- - Testing de formularios reactivos. -->
 
-- Introducción a los servicios HTTP en Angular.
+<!-- - Introducción a los servicios HTTP en Angular.
 - Servicio fake basado en JSONServer.
   - Prueba con Postman
 - Servicio HttpClientModule. Observables (RxJs).
 
   - Creación de un ApiRepositoryService.
   - Antes de Angular 21: Configuración del servicio HTTP: provider
-  - Uso desde la feature Tasks. -->
+  - Uso desde la feature Tasks.  -->
 
 - [Descanso] 11:45 - 12:10
 
