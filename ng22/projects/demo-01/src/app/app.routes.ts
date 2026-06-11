@@ -34,6 +34,14 @@ export const routes: Routes = [
     loadComponent: () => import('./features/tasks/tasks-page').then((m) => m.default),
   },
   {
+    path: 'notes',
+    title: 'Notes | Demo 01',
+    data: {
+      label: 'Notas',
+    },
+    loadComponent: () => import('./features/notes/notes-page').then((m) => m.default),
+  },
+  {
     path: 'products',
     title: 'Products | Demo 01',
     data: {
