@@ -1,31 +1,27 @@
-import { Component, ElementRef, OnInit, output, viewChild } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { TaskDTO } from '../../types/task';
-import { FormsModule, NgForm } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { form, FormField } from '@angular/forms/signals';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ind-task-form',
-  imports: [FormsModule, JsonPipe],
+  imports: [JsonPipe, FormField, FormsModule],
   template: `
-    <form (ngSubmit)="emitAddTask(ngForm)" #form  #ngForm="ngForm">
+    <p>Signal Form</p>
+    <form (ngSubmit)="emitAddTask()">
       <label class="form-control">
         Título:
-        <input type="text" name="title" ngModel/>
+        <input type="text" [formField]="taskForm.title" />
       </label>
       <label class="form-control">
         Responsable:
-        <input type="text" name="owner" ngModel/>
+        <input type="text" [formField]="taskForm.owner" />
       </label>
-      <button
-        type="submit"
-      >
-        Agregar tarea
-      </button>
+      <button type="submit">Agregar tarea</button>
     </form>
 
-
-    <pre>{{ ngForm.value | json }}</pre>
-
+    <pre>{{ taskData() | json }}</pre>
   `,
   styles: `
     form {
@@ -41,25 +37,21 @@ import { JsonPipe } from '@angular/common';
     }
   `,
 })
-export class TaskForm implements OnInit {
+export class TaskForm {
   protected addEvent = output<TaskDTO>();
 
+  protected readonly taskData = signal<TaskDTO>({
+    title: '',
+    owner: '',
+    isCompleted: false,
+  });
 
-  protected readonly form = viewChild<ElementRef>('form' );
-  protected readonly ngForm = viewChild<NgForm>('ngForm');
+  protected readonly taskForm = form(this.taskData);
 
-  ngOnInit() {
-    console.log('Formulario:', this.form());
-    console.log('Formulario ngForm:', this.ngForm());
-  }
-
-
-  protected emitAddTask(ngForm: NgForm) {
-
-    const data: TaskDTO ={ ...ngForm.value, isCompleted: false };
-    ngForm.resetForm();
-
-    console.log('Emitiendo evento para agregar tarea:', data);
-    this.addEvent.emit(data);
+  protected emitAddTask() {
+    // const data: TaskDTO ={ ...ngForm.value, isCompleted: false };
+    // this.taskForm.
+    console.log('Emitiendo evento para agregar tarea:', this.taskData);
+    this.addEvent.emit(this.taskData());
   }
 }
