@@ -16,6 +16,6 @@ export class Time {
   #time = new Date();
 
   getTime() {
-    return this.#time;
+    return this.#time.getTime();
   }
 }

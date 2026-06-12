@@ -1,6 +1,6 @@
 type Gender = 'male' | 'female' | 'other';
 
-type Country = 'España' | 'Francia' | 'Portugal' | 'Australia' | 'Other';
+type Country = 'es' | 'fr' | 'de' | 'it' | 'other';
 
 export interface LoginData {
   email: string; // From Input email
