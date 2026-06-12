@@ -1,7 +1,8 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { NoteDTO } from '../../types/note';
 import { JsonPipe } from '@angular/common';
 import { form, FormField, FormRoot } from '@angular/forms/signals';
+import { NotesStore } from '../../../../store/notes-store';
 
 @Component({
   selector: 'ind-note-form',
@@ -37,7 +38,8 @@ import { form, FormField, FormRoot } from '@angular/forms/signals';
   `,
 })
 export class NoteForm {
-  protected addEvent = output<NoteDTO>();
+  // protected addEvent = output();
+  protected readonly state = inject(NotesStore);
 
   private readonly initialNoteData: NoteDTO = {
     title: '',
@@ -50,16 +52,17 @@ export class NoteForm {
   protected readonly noteForm = form(this.noteData, {
     submission: {
       action: async (f) => {
-        this.emitAddNote();
+        this.invokeAddNote();
         f().reset(this.initialNoteData);
       },
     },
   });
 
-  protected emitAddNote() {
+  protected invokeAddNote() {
     // const data: NoteDTO ={ ...ngForm.value, isImportant: false };
     // this.noteForm.
     console.log('Emitiendo evento para agregar nota:', this.noteData);
-    this.addEvent.emit(this.noteData());
+    this.state.addNote(this.noteData());
+    // this.addEvent.emit();
   }
 }

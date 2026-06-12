@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Note } from '../../types/note';
 import { Card } from '../../../../core/components/card/card';
+import { NotesStore } from '../../../../store/notes-store';
 
 @Component({
   selector: 'ind-note-item',
@@ -12,10 +13,10 @@ import { Card } from '../../../../core/components/card/card';
       <p>{{ note().id }}</p>
       <p>{{ note().author }}</p>
       <label>
-        <input type="checkbox" [checked]="note().isImportant" (change)="emitChange()" />
+        <input type="checkbox" [checked]="note().isImportant" (change)="invokeChange()" />
         Important
       </label>
-      <button (click)="emitDelete()">Borrar</button>
+      <button (click)="invokeDelete()">Borrar</button>
     </ind-card>
   `,
   styles: `
@@ -27,18 +28,17 @@ import { Card } from '../../../../core/components/card/card';
 export class NoteItem {
   note = input.required<Note>();
 
-  deleteEvent = output<Note['id']>();
-  changeEvent = output<Note>();
+  protected readonly state = inject(NotesStore);
 
-  emitDelete() {
-    this.deleteEvent.emit(this.note().id);
+  invokeDelete() {
+    this.state.deleteNote(this.note().id);
   }
 
-  emitChange() {
+  invokeChange() {
     const note = {
       ...this.note(),
       isImportant: !this.note().isImportant,
     };
-    this.changeEvent.emit(note);
+    this.state.updateNote(note);
   }
 }
