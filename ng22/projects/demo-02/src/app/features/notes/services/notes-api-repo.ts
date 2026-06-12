@@ -12,16 +12,6 @@ export class NotesApiRepo implements RepositoryRx<Note, NoteDTO> {
 
   private API_URL = environment.apiUrl + '/notes'
 
-  // async asyncGetAll(): Promise<Note[]> {
-  //   const response = await fetch(this.API_URL);
-  //   if (!response.ok) {
-  //     throw new Error('Failed to fetch notes');
-  //   }
-  //   const data = await response.json() as Note[];
-  //   return data;
-  // }
-
-
   getAll(): Observable<Note[]> {
     return this.http.get<Note[]>(this.API_URL);
   }
@@ -29,23 +19,6 @@ export class NotesApiRepo implements RepositoryRx<Note, NoteDTO> {
   getById(id: string): Observable<Note> {
     return this.http.get<Note>(`${this.API_URL}/${id}`);
   }
-
-  // async asyncCreate(data: NoteDTO): Promise<Note> {
-  //   const response = await fetch(
-  //     this.API_URL,
-  //     {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(data)
-  //     });
-  //   if (!response.ok) {
-  //     throw new Error('Failed to fetch notes');
-  //   }
-  //   const newNote = await response.json() as Note;
-  //   return newNote;
-  // }
 
   create(item: NoteDTO): Observable<Note> {
     return this.http.post<Note>(this.API_URL, item);
