@@ -36,6 +36,10 @@ export class NotesStore {
 
   private readonly destroyRef = inject(DestroyRef);
 
+  constructor() {
+    this.loadNotes();
+  }
+
   public loadNotes() {
     this.#isLoading.set(true);
     this.repo

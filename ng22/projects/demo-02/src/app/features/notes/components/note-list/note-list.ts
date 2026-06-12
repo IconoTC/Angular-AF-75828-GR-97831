@@ -61,7 +61,7 @@ export class NoteList {
 
 
   constructor() {
-    this.state.loadNotes();
+    // this.state.loadNotes();
 
     effect(() => {
       // console.log('Notas actualizadas:', this.state.notes());

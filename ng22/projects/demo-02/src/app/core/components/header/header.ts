@@ -1,14 +1,21 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
+import { NotesStore } from '../../../store/notes-store';
 
 @Component({
   selector: 'ind-header',
   imports: [],
   template: `
     <header>
+  
       <ng-content select="#logo" />
       <img src="favicon.ico" alt="Logo" width="50" height="50" />
+      <p>Notas: {{ notesCount() }}</p>
+  
       <h1>{{ title() }}</h1>
-      <ng-content select="#menu" />
+      <div class="menu">
+        <ng-content select="#menu" />
+
+      </div>
     </header>
     <p>{{ subtitle() }}</p>
   `,
@@ -22,8 +29,12 @@ import { Component, input } from '@angular/core';
 
     header {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
+    }
+
+    .menu {
+      grid-column: span 2;
     }
 
     p {
@@ -32,6 +43,12 @@ import { Component, input } from '@angular/core';
   `,
 })
 export class Header {
+
+  private readonly state = inject(NotesStore);
+
+  protected readonly notesCount = computed(
+    () => this.state.notes().length);
+  
   readonly title = input.required<string>({
     // eslint-disable-next-line @angular-eslint/no-input-rename
     alias: 'mainTitle',
