@@ -2,19 +2,19 @@
   "notes": [
     {
       "id": "1a2d0",
-      "title": "Aprender Angular",
+      "title": "Aprender Angular 22",
       "author": "Pepe",
       "isImportant": false
     },
     {
       "id": "2c41f",
-      "title": "Completar proyecto",
+      "title": "Completar proyecto de Products",
       "author": "Ernestina",
       "isImportant": true
     },
     {
       "id": "3e5f7",
-      "title": "Revisar código",
+      "title": "Revisar código y completar documentación",
       "author": "Carlos",
       "isImportant": false
     }

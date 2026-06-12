@@ -1,12 +1,11 @@
 import { Service } from '@angular/core';
 import { RepositoryRx } from '../../../core/types/repository-rx';
 import { Note, NoteDTO } from '../types/note';
-import NOTES_INIT from  '../data/notes-data.json'
+import NOTES_INIT from '../data/notes-data.json';
 import { Observable, of } from 'rxjs';
 
 @Service()
 export class NotesLocalRxRepo implements RepositoryRx<Note, NoteDTO> {
-
   protected readonly storageKey = 'notes';
 
   private getNotes(): Note[] {
@@ -24,20 +23,7 @@ export class NotesLocalRxRepo implements RepositoryRx<Note, NoteDTO> {
     localStorage.setItem(this.storageKey, JSON.stringify(value));
   }
 
-  getAll(): Observable<Note[]> {
-    return of(this.getNotes());
-  }
-
-  getById(id: string): Observable<Note> {
-    const notes = this.getNotes();
-    const note = notes.find(n => n.id === id);
-    if (!note) {
-      throw new Error(`Note with id ${id} not found`);
-    }
-    return of(note);
-  }
-
-    private generateId(notes: Note[]): string {
+  private generateId(notes: Note[]): string {
     while (true) {
       const id = crypto.randomUUID().substring(1, 6);
       // Verificar que el ID no exista ya
@@ -47,23 +33,36 @@ export class NotesLocalRxRepo implements RepositoryRx<Note, NoteDTO> {
     }
   }
 
-  create(item: NoteDTO): Observable<Note> {
-    const notes = this.getNotes();
-    const newNote: Note = {
-      id: this.generateId(notes),
-      ...item
-    };
-    notes.push(newNote);
-    this.setNotes(notes);
-    return of(newNote);
-  }
-
   private findNoteIndex(id: string, notes: Note[]): number {
-   const index = notes.findIndex(n => n.id === id);
+    const index = notes.findIndex((n) => n.id === id);
     if (index === -1) {
       throw new Error(`Note with id ${id} not found`);
     }
     return index;
+  }
+
+  getAll(): Observable<Note[]> {
+    return of(this.getNotes());
+  }
+
+  getById(id: string): Observable<Note> {
+    const notes = this.getNotes();
+    const note = notes.find((n) => n.id === id);
+    if (!note) {
+      throw new Error(`Note with id ${id} not found`);
+    }
+    return of(note);
+  }
+
+  create(item: NoteDTO): Observable<Note> {
+    const notes = this.getNotes();
+    const newNote: Note = {
+      id: this.generateId(notes),
+      ...item,
+    };
+    notes.push(newNote);
+    this.setNotes(notes);
+    return of(newNote);
   }
 
   update(id: string, item: Partial<NoteDTO>): Observable<Note> {
@@ -79,6 +78,6 @@ export class NotesLocalRxRepo implements RepositoryRx<Note, NoteDTO> {
     const index = this.findNoteIndex(id, notes);
     notes.splice(index, 1);
     this.setNotes(notes);
-    return of(void 0);
+    return of();
   }
 }

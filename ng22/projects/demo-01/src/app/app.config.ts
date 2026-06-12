@@ -8,11 +8,13 @@ registerLocaleData(localeEs);
 
 import { routes } from './app.routes';
 import { TimeOld } from './core/services/time';
+//import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
+    // provideHttpClient(withInterceptors([])),
     {provide: LOCALE_ID, useValue: 'es-ES'},
     TimeOld,
   ],

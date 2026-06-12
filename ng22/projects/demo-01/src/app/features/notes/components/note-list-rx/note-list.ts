@@ -1,15 +1,18 @@
-import { Component, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { Note, NoteDTO } from '../../types/note';
 import { JsonPipe } from '@angular/common';
 import { NoteForm } from '../note-form/note-form';
 import { NoteItem } from '../note-item/note-item';
 import { RepositoryRx } from '../../../../core/types/repository-rx';
-import { NotesLocalRxRepo } from '../../services/notes-local-rx-repo';
+// import { NotesLocalRxRepo } from '../../services/notes-local-rx-repo';
+import { NotesApiRepo } from '../../services/notes-api-repo';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Card } from '../../../../core/components/card/card';
 
 @Component({
   selector: 'ind-note-list',
-  imports: [JsonPipe, NoteForm, NoteItem],
+  imports: [JsonPipe, NoteForm, NoteItem, Card],
   template: `
     <p>Note List Rx</p>
     <details #details>
@@ -18,7 +21,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     </details>
 
     @if (notes().length === 0) {
-      <p>Cargando tareas....</p>
+      @if (isLoading()) {
+        <p>Cargando tareas....</p>
+      } @else if (error()) {
+        <ind-card>
+          <p>{{ error() }}</p>
+        </ind-card>
+      }
     } @else {
       <ul>
         @for (note of notes(); track note.id) {
@@ -48,10 +57,18 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   `,
 })
 export class NoteList {
-  private readonly repo: RepositoryRx<Note, NoteDTO> = inject(NotesLocalRxRepo);
+  // Inyección del Repo que usa LocalStorage
+  // private readonly repo: RepositoryRx<Note, NoteDTO> = inject(NotesLocalRxRepo);
+
+  // Inyección del Repo que usa un API Rest
+  private readonly repo: RepositoryRx<Note, NoteDTO> = inject(NotesApiRepo);
+  private readonly destroyRef = inject(DestroyRef);
+
+  protected readonly details = viewChild<ElementRef<HTMLDetailsElement>>('details');
 
   protected readonly notes = signal<Note[]>([]);
-  protected readonly details = viewChild<ElementRef<HTMLDetailsElement>>('details');
+  protected readonly isLoading = signal(false);
+  protected readonly error = signal<string | null>(null);
 
   constructor() {
     this.loadNotes();
@@ -61,13 +78,14 @@ export class NoteList {
     // Simulación de carga de tareas desde una API
     this.repo
       .getAll()
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (notes) => {
           this.notes.set(notes);
         },
-        error: (error) => {
+        error: (error: HttpErrorResponse) => {
           console.error('Error loading notes:', error);
+          this.error.set('Failed to load notes. Please try again later.');
         },
         complete: () => console.log('Notes loading completed'),
       });
@@ -80,7 +98,7 @@ export class NoteList {
 
     this.repo
       .create(noteData)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (newNote) => {
           // Sincrona -> State local (Signal)
@@ -88,8 +106,9 @@ export class NoteList {
           // Cerrar el detalle después de agregar la tarea
           (this.details() as ElementRef<HTMLDetailsElement>).nativeElement.open = false;
         },
-        error: (error) => {
+        error: (error: HttpErrorResponse) => {
           console.error('Error adding note:', error);
+          this.error.set('Failed to add note. Please try again later.');
         },
       });
   }
@@ -98,13 +117,14 @@ export class NoteList {
     console.log('Delete note with id:', noteId);
     this.repo
       .delete(noteId)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
           this.notes.update((notes) => notes.filter((note) => note.id !== noteId));
         },
-        error: (error) => {
+        error: (error: HttpErrorResponse) => {
           console.error('Error deleting note:', error);
+          this.error.set('Failed to delete note. Please try again later.');
         },
       });
   }
@@ -114,15 +134,16 @@ export class NoteList {
 
     this.repo
       .update(note.id, note)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (updatedNote) => {
           this.notes.update((notes) => {
             return notes.map((n) => (n.id === updatedNote.id ? updatedNote : n));
           });
         },
-        error: (error) => {
+        error: (error: HttpErrorResponse) => {
           console.error('Error updating note:', error);
+          this.error.set('Failed to update note. Please try again later.');
         },
       });
   }
