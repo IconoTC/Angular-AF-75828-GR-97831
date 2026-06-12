@@ -227,16 +227,30 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 - [Descanso] 11:15 - 11:45
 
 
-<!-- Servicios stateful: patrón Flux
+- Servicios stateful: patrón Flux
 
-- Estado con RxJS: Subjects
-- Nuevo proyecto. Feature Todo
-- Servicio Store con TodoState
-  - Estado privado con BehaviorSubject
-  - Estado público con Observable (asObservable)
-  - Métodos para modificar el estado (add, toggle, remove)
+- Nuevo proyecto (demo-02). Feature Notes
+
+  - Estado con RxJS: Subjects
+    - Estado privado con BehaviorSubject
+    - Estado público con Observable (asObservable)
+    - Métodos para modificar el estado (add, toggle, remove)
+  
+  
+  - Estado con Signals: signal (WriteableSignal) y readOnly/computed (Signal)
+  
+  - Servicio Store con NotesState
+    - Estado privado con WriteableSignal
+    - Estado público con Signal (asReadOnly)
+    - Métodos para modificar el estado (add, toggle, remove)
+
 - Uso del estado desde los componentes ToDo...
 - Gestión de errores
 - Uso desde cualquier parte de la aplicación (Header) 
- 
--->
+
+- Más novedades (Signals)
+  - resources: httResource (Angular 22)
+  - linkedSignals
+- Directivas propias
+- Interceptors y Guards
+- Testing
