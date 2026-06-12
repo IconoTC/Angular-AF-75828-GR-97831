@@ -164,7 +164,6 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
   - Provider root v. provider en un componente / ruta
   - Ejemplo con un servicio simple: Time
   - Injector jerárquico. Servicios singleton y no singleton.
-  - Inyección de una constante: TITLE_APP
 
 - Solución de problemas en CSS con el grid RWD
 
@@ -197,31 +196,36 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
 
 ## Día 5 (V-12). Servicios HTTP
 
-<!-- - Formularios reactivos (continuación).
+- Formularios reactivos (continuación).
 
   - RegisterForm. Otros controles HTML
   - Validaciones síncronas (y asíncronas).
     - Mensajes de validación 
--->
   
 <!-- - Testing de formularios reactivos. -->
 
-<!-- - Introducción a los servicios HTTP en Angular.
-- Servicio fake basado en JSONServer.
+- Introducción a los servicios HTTP en Angular.
+
+- API server fake basado en JSONServer.
   - Prueba con Postman
+
+- Instalación y uso de environments. 
+  - Configuración de la URL base del API.
+
 - Servicio HttpClientModule. Observables (RxJs).
 
   - Creación de un ApiRepositoryService.
   - Antes de Angular 21: Configuración del servicio HTTP: provider
-  - Uso desde la feature Tasks.  -->
-
-- [Descanso] 11:45 - 12:10
+  - Uso desde el componente (NoteList).  
 
 <!--
 - Servicio HttpClientModule. Observables (RxJs).
   - Tests de servicios HTTP con HttpTestingController
   - Test de componentes con servicios HTTP (mocks y spies).
 -->
+
+- [Descanso] 11:15 - 11:45
+
 
 <!-- Servicios stateful: patrón Flux
 
@@ -233,4 +237,6 @@ Curso de Angular 22, versión publicada el 3 de Junio de 2026.
   - Métodos para modificar el estado (add, toggle, remove)
 - Uso del estado desde los componentes ToDo...
 - Gestión de errores
-- Uso desde cualquier parte de la aplicación (Header) -->
+- Uso desde cualquier parte de la aplicación (Header) 
+ 
+-->
